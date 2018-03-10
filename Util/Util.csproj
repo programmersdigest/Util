@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>programmersdigest.Util</RootNamespace>
+    <Version>0.1.6</Version>
+    <Authors>Michael Sperber (programmersdigest.de)</Authors>
+    <Company>programmersdigest.de</Company>
+    <Description>Utility classes, helper functions and extension methods of various kinds.</Description>
+    <Copyright>Copyright © Michael Sperber (programmersdigest.de) 2018</Copyright>
+    <PackageTags>Utility Helpers Extensions</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseUrl>https://github.com/programmersdigest/Util/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/programmersdigest/Util</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/programmersdigest/Util</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if $(ConfigurationName) == Release nuget pack $(ProjectDir).nuspec" />
+  </Target>
+
+</Project>
