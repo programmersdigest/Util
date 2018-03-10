@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net45;</TargetFrameworks>
     <RootNamespace>programmersdigest.Util</RootNamespace>
-    <Version>0.1.6</Version>
+    <Version>0.1.7</Version>
     <Authors>Michael Sperber (programmersdigest.de)</Authors>
     <Company>programmersdigest.de</Company>
     <Description>Utility classes, helper functions and extension methods of various kinds.</Description>
@@ -15,10 +14,10 @@
     <PackageProjectUrl>https://github.com/programmersdigest/Util</PackageProjectUrl>
     <RepositoryUrl>https://github.com/programmersdigest/Util</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
+    <PackageIconUrl>https://raw.githubusercontent.com/programmersdigest/Util/master/Resources/Icon.png</PackageIconUrl>
   </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Release nuget pack $(ProjectDir).nuspec" />
-  </Target>
-
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+    <DefineConstants>NETSTANDARD</DefineConstants>
+  </PropertyGroup>
 </Project>
