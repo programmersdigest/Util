@@ -4,23 +4,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UtilTests {
+namespace UtilTests
+{
     [TestClass]
-    public class ComparableWeakReferenceTests {
+    public class ComparableWeakReferenceTests
+    {
         [TestMethod]
-        public void ComparableWeakReference_Ctor_TargetIsNull_ShouldNotThrowException() {
+        public void ComparableWeakReference_Ctor_TargetIsNull_ShouldNotThrowException()
+        {
             var reference = new ComparableWeakReference<object>(null);
             Assert.IsNotNull(reference);
         }
 
         [TestMethod]
-        public void ComparableWeakReference_GetHashCode_TargetIsNull_HashCodeShouldBeZero() {
+        public void ComparableWeakReference_GetHashCode_TargetIsNull_HashCodeShouldBeZero()
+        {
             var reference = new ComparableWeakReference<object>(null);
             Assert.AreEqual(0, reference.GetHashCode());
         }
 
         [TestMethod]
-        public void ComparableWeakReference_GetHashCode_ValidTarget_HashCodeShouldBeTargetHashCode() {
+        public void ComparableWeakReference_GetHashCode_ValidTarget_HashCodeShouldBeTargetHashCode()
+        {
             var target = new object();
 
             var reference = new ComparableWeakReference<object>(target);
@@ -28,7 +33,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_GetHashCode_TargetGetsGarbageCollected_HashCodeShouldNotChange() {
+        public void ComparableWeakReference_GetHashCode_TargetGetsGarbageCollected_HashCodeShouldNotChange()
+        {
 #if DEBUG
             Assert.Inconclusive("Please run test in configuration \"Release\". Otherwise Garbage Collection will not collect the reference target and the test will fail.");
 #endif
@@ -53,7 +59,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_Equal_ShouldNotBeConsideredEqualToTarget() {
+        public void ComparableWeakReference_Equal_ShouldNotBeConsideredEqualToTarget()
+        {
             var target = new object();
 
             var reference = new ComparableWeakReference<object>(target);
@@ -62,7 +69,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_UseInHashSet_MultipleReferencesSameTarget_ShouldBeConsideredDuplicates() {
+        public void ComparableWeakReference_UseInHashSet_MultipleReferencesSameTarget_ShouldBeConsideredDuplicates()
+        {
             var target = new object();
 
             var reference1 = new ComparableWeakReference<object>(target);
@@ -79,7 +87,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_UseInHashSet_MultipleReferencesDifferentTargets_ShouldBeConsideredDifferent() {
+        public void ComparableWeakReference_UseInHashSet_MultipleReferencesDifferentTargets_ShouldBeConsideredDifferent()
+        {
             var target1 = new object();
             var target2 = new object();
             var target3 = new object();
@@ -98,7 +107,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_UseInHashSet_ContainsUsingDifferentReferenceToSameTarget_ShouldReturnTrue() {
+        public void ComparableWeakReference_UseInHashSet_ContainsUsingDifferentReferenceToSameTarget_ShouldReturnTrue()
+        {
             var target = new object();
 
             var reference1 = new ComparableWeakReference<object>(target);
@@ -112,7 +122,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_UseInHashSet_RemoveUsingDifferentReferenceToSameTarget_ShouldRemoveEntry() {
+        public void ComparableWeakReference_UseInHashSet_RemoveUsingDifferentReferenceToSameTarget_ShouldRemoveEntry()
+        {
             var target = new object();
 
             var reference1 = new ComparableWeakReference<object>(target);
@@ -128,14 +139,16 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_UseAsDictionaryKey_MultipleReferencesSameTarget_ShouldBeConsideredDuplicates() {
+        public void ComparableWeakReference_UseAsDictionaryKey_MultipleReferencesSameTarget_ShouldBeConsideredDuplicates()
+        {
             var target = new object();
 
             var reference1 = new ComparableWeakReference<object>(target);
             var reference2 = new ComparableWeakReference<object>(target);
             var reference3 = new ComparableWeakReference<object>(target);
 
-            var dict = new Dictionary<ComparableWeakReference<object>, string> {
+            var dict = new Dictionary<ComparableWeakReference<object>, string>
+            {
                 [reference1] = "Ref 1",
                 [reference2] = "Ref 2",
                 [reference3] = "Ref 3"
@@ -146,7 +159,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_UseAsDictionaryKey_MultipleReferencesDifferentTargets_ShouldBeConsideredDifferent() {
+        public void ComparableWeakReference_UseAsDictionaryKey_MultipleReferencesDifferentTargets_ShouldBeConsideredDifferent()
+        {
             var target1 = new object();
             var target2 = new object();
             var target3 = new object();
@@ -155,7 +169,8 @@ namespace UtilTests {
             var reference2 = new ComparableWeakReference<object>(target2);
             var reference3 = new ComparableWeakReference<object>(target3);
 
-            var dict = new Dictionary<ComparableWeakReference<object>, string> {
+            var dict = new Dictionary<ComparableWeakReference<object>, string>
+            {
                 [reference1] = "Ref 1",
                 [reference2] = "Ref 2",
                 [reference3] = "Ref 3"
@@ -165,13 +180,15 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_UseAsDictionaryKey_ContainsKeyUsingDifferentReferenceToSameTarget_ShouldReturnTrue() {
+        public void ComparableWeakReference_UseAsDictionaryKey_ContainsKeyUsingDifferentReferenceToSameTarget_ShouldReturnTrue()
+        {
             var target = new object();
 
             var reference1 = new ComparableWeakReference<object>(target);
             var reference2 = new ComparableWeakReference<object>(target);
 
-            var dict = new Dictionary<ComparableWeakReference<object>, string> {
+            var dict = new Dictionary<ComparableWeakReference<object>, string>
+            {
                 [reference1] = "Ref 1"
             };
 
@@ -179,27 +196,31 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void ComparableWeakReference_UseAsDictionaryKey_GetEntryUsingDifferentReferenceToSameTarget_ShouldReturnEntry() {
+        public void ComparableWeakReference_UseAsDictionaryKey_GetEntryUsingDifferentReferenceToSameTarget_ShouldReturnEntry()
+        {
             var target = new object();
 
             var reference1 = new ComparableWeakReference<object>(target);
             var reference2 = new ComparableWeakReference<object>(target);
 
-            var dict = new Dictionary<ComparableWeakReference<object>, string> {
+            var dict = new Dictionary<ComparableWeakReference<object>, string>
+            {
                 [reference1] = "Ref 1"
             };
-            
+
             Assert.AreEqual("Ref 1", dict[reference2]);
         }
 
         [TestMethod]
-        public void ComparableWeakReference_UseAsDictionaryKey_RemoveUsingDifferentReferenceToSameTarget_ShouldRemoveEntry() {
+        public void ComparableWeakReference_UseAsDictionaryKey_RemoveUsingDifferentReferenceToSameTarget_ShouldRemoveEntry()
+        {
             var target = new object();
 
             var reference1 = new ComparableWeakReference<object>(target);
             var reference2 = new ComparableWeakReference<object>(target);
 
-            var dict = new Dictionary<ComparableWeakReference<object>, string> {
+            var dict = new Dictionary<ComparableWeakReference<object>, string>
+            {
                 [reference1] = "Ref 1"
             };
 

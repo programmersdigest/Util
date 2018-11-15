@@ -4,25 +4,30 @@ using programmersdigest.Util;
 using System.Linq;
 using System;
 
-namespace UtilTests {
+namespace UtilTests
+{
     [TestClass]
-    public class LinqExtensionsTests {
+    public class LinqExtensionsTests
+    {
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void LinqExtensions_Scan_CollectionIsNull_ShouldThrowNullReferenceException() {
+        public void LinqExtensions_Scan_CollectionIsNull_ShouldThrowNullReferenceException()
+        {
             List<int> collection = null;
             collection.Scan((state, item) => state + item, 0).ToList();
         }
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void LinqExtensions_Scan_AggregateFunctionIsNull_ShouldThrowNullReferenceException() {
+        public void LinqExtensions_Scan_AggregateFunctionIsNull_ShouldThrowNullReferenceException()
+        {
             var collection = new[] { 1, 2, 3, 4, 5 };
             collection.Scan(null, 0).ToList();
         }
 
         [TestMethod]
-        public void LinqExtensions_Scan_CollectionIsEmpty_ShouldReturnEmptyCollection() {
+        public void LinqExtensions_Scan_CollectionIsEmpty_ShouldReturnEmptyCollection()
+        {
             var collection = new int[] { };
             var result = collection.Scan((state, item) => state + item, 0).ToList();
 
@@ -30,7 +35,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void LinqExtensions_Scan_AddIntegers_ShouldReturnAddedValues() {
+        public void LinqExtensions_Scan_AddIntegers_ShouldReturnAddedValues()
+        {
             var collection = new[] { 1, 2 };
             var result = collection.Scan((state, item) => state + item, 0).ToList();
 
@@ -40,7 +46,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void LinqExtensions_Scan_NoInitialState_AddIntegers_ShouldBehaveAsIfInitialStateIs0() {
+        public void LinqExtensions_Scan_NoInitialState_AddIntegers_ShouldBehaveAsIfInitialStateIs0()
+        {
             var collection = new[] { 1, 2 };
             var result = collection.Scan<int, int>((state, item) => state + item).ToList();
 
@@ -50,7 +57,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void LinqExtensions_Scan_SubtractIntegers_ShouldReturnSubtractedValues() {
+        public void LinqExtensions_Scan_SubtractIntegers_ShouldReturnSubtractedValues()
+        {
             var collection = new[] { 1, 2 };
             var result = collection.Scan((state, item) => state - item, 0).ToList();
 
@@ -60,7 +68,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void LinqExtensions_Scan_AddIntegers_InitialStateIs5_ShouldReturnAddedValues() {
+        public void LinqExtensions_Scan_AddIntegers_InitialStateIs5_ShouldReturnAddedValues()
+        {
             var collection = new[] { 10, 15 };
             var result = collection.Scan((state, item) => state + item, 5).ToList();
 
@@ -70,7 +79,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void LinqExtensions_Scan_ConcatStrings_ShouldReturnConcatenatedStrings() {
+        public void LinqExtensions_Scan_ConcatStrings_ShouldReturnConcatenatedStrings()
+        {
             var collection = new[] { "This", "is", "a", "sentence" };
             var result = collection.Scan((state, item) => state + item, "").ToList();
 
@@ -82,7 +92,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void LinqExtensions_Scan_ConcatStrings_InitialStateNotGiven_ShouldReturnConcatenatedStrings() {
+        public void LinqExtensions_Scan_ConcatStrings_InitialStateNotGiven_ShouldReturnConcatenatedStrings()
+        {
             var collection = new[] { "This", "is", "a", "sentence" };
             var result = collection.Scan<string, string>((state, item) => state + item).ToList();
 

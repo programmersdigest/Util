@@ -4,14 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UtilTests {
+namespace UtilTests
+{
     [TestClass]
-    public class MultiDictionaryExtensionsTests {
+    public class MultiDictionaryExtensionsTests
+    {
         #region Add
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void MultiDictionaryExtensions_Add_DictionaryIsNull_ShouldThrowArgumentNullException() {
+        public void MultiDictionaryExtensions_Add_DictionaryIsNull_ShouldThrowArgumentNullException()
+        {
             Dictionary<int, HashSet<string>> dict = null;
 
             MultiDictionaryExtensions.Add(dict, 0, "Test 0");
@@ -19,13 +22,15 @@ namespace UtilTests {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void MultiDictionaryExtensions_Add_KeyIsNull_ShouldThrowArgumentNullException() {
+        public void MultiDictionaryExtensions_Add_KeyIsNull_ShouldThrowArgumentNullException()
+        {
             var dict = new Dictionary<object, HashSet<string>>();
             dict.Add(null, "Test 0");
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_ValueIsNull_ShouldAddValue() {
+        public void MultiDictionaryExtensions_Add_ValueIsNull_ShouldAddValue()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             string value = null;
             dict.Add(0, value);
@@ -34,9 +39,10 @@ namespace UtilTests {
             Assert.AreEqual(1, dict[0].Count);
             Assert.IsNull(dict[0].First());
         }
-        
+
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_SingleKeySingleValue_ShouldContainSingleKey() {
+        public void MultiDictionaryExtensions_Add_SingleKeySingleValue_ShouldContainSingleKey()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
 
@@ -45,7 +51,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_SingleKeySingleValue_ShouldContainSingleValue() {
+        public void MultiDictionaryExtensions_Add_SingleKeySingleValue_ShouldContainSingleValue()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
 
@@ -54,18 +61,20 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_SingleKeyMultipleValues_ShouldContainSingleKey() {
+        public void MultiDictionaryExtensions_Add_SingleKeyMultipleValues_ShouldContainSingleKey()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
             dict.Add(0, "Test 1");
             dict.Add(0, "Test 2");
-            
+
             Assert.AreEqual(1, dict.Count);
             Assert.IsTrue(dict.ContainsKey(0));
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_SingleKeyMultipleValues_ShouldContainAllValues() {
+        public void MultiDictionaryExtensions_Add_SingleKeyMultipleValues_ShouldContainAllValues()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
             dict.Add(0, "Test 1");
@@ -78,7 +87,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_MultipleKeysMultipleValues_ShouldContainAllKeys() {
+        public void MultiDictionaryExtensions_Add_MultipleKeysMultipleValues_ShouldContainAllKeys()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
             dict.Add(0, "Test 1");
@@ -96,7 +106,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_MultipleKeysMultipleValues_ShouldContainAllValues() {
+        public void MultiDictionaryExtensions_Add_MultipleKeysMultipleValues_ShouldContainAllValues()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
             dict.Add(0, "Test 1");
@@ -119,9 +130,10 @@ namespace UtilTests {
             Assert.IsTrue(dict[2].Contains("Test 4"));
             Assert.IsTrue(dict[2].Contains("Test 5"));
         }
-        
+
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_UsingInitializerList_ShouldAddValues() {
+        public void MultiDictionaryExtensions_Add_UsingInitializerList_ShouldAddValues()
+        {
             var dict = new Dictionary<int, HashSet<string>> {
                 { 0, "Test 0" },
                 { 0, "Test 1" },
@@ -134,7 +146,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_CollectionIsList_ShouldAddLists() {
+        public void MultiDictionaryExtensions_Add_CollectionIsList_ShouldAddLists()
+        {
             var dict = new Dictionary<int, List<string>> {
                 { 0, "Test 0" },
                 { 1, "Test 1" }
@@ -145,7 +158,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_CollectionIsHasSet_ShouldAddHashSets() {
+        public void MultiDictionaryExtensions_Add_CollectionIsHasSet_ShouldAddHashSets()
+        {
             var dict = new Dictionary<int, HashSet<string>> {
                 { 0, "Test 0" },
                 { 1, "Test 1" }
@@ -156,7 +170,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_CollectionIsSortedList_ShouldAddSortedLists() {
+        public void MultiDictionaryExtensions_Add_CollectionIsSortedList_ShouldAddSortedLists()
+        {
             var dict = new Dictionary<int, SortedList<int, string>> {
                 { 0, KeyValuePair.Create(0, "Test 0") },
                 { 1, KeyValuePair.Create(0, "Test 1") }
@@ -167,7 +182,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Add_CollectionIsLinkedList_ShouldAddLinkedLists() {
+        public void MultiDictionaryExtensions_Add_CollectionIsLinkedList_ShouldAddLinkedLists()
+        {
             var dict = new Dictionary<int, LinkedList<string>> {
                 { 0, "Test 0" },
                 { 1, "Test 1" }
@@ -183,7 +199,8 @@ namespace UtilTests {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void MultiDictionaryExtensions_Remove_DictionaryIsNull_ShouldThrowArgumentNullException() {
+        public void MultiDictionaryExtensions_Remove_DictionaryIsNull_ShouldThrowArgumentNullException()
+        {
             Dictionary<int, HashSet<string>> dict = null;
 
             MultiDictionaryExtensions.Remove(dict, 0, "Test 0");
@@ -191,13 +208,15 @@ namespace UtilTests {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void MultiDictionaryExtensions_Remove_KeyIsNull_ShouldThrowArgumentNullException() {
+        public void MultiDictionaryExtensions_Remove_KeyIsNull_ShouldThrowArgumentNullException()
+        {
             var dict = new Dictionary<object, HashSet<string>>();
             dict.Remove(null, "Test 0");
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Remove_KeyDoesNotExist_ShouldReturnFalse() {
+        public void MultiDictionaryExtensions_Remove_KeyDoesNotExist_ShouldReturnFalse()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             var result = dict.Remove(1, "Test 0");
 
@@ -205,7 +224,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Remove_ValueDoesNotExist_ShouldReturnFalse() {
+        public void MultiDictionaryExtensions_Remove_ValueDoesNotExist_ShouldReturnFalse()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
 
@@ -215,7 +235,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Remove_ValueIsNull_ShouldRemoveValue() {
+        public void MultiDictionaryExtensions_Remove_ValueIsNull_ShouldRemoveValue()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             string value = null;
             dict.Add(0, value);
@@ -226,7 +247,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Remove_OtherValuesRemainInKey_ShouldOnlyRemoveSpecifiedValue() {
+        public void MultiDictionaryExtensions_Remove_OtherValuesRemainInKey_ShouldOnlyRemoveSpecifiedValue()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
             dict.Add(0, "Test 1");
@@ -240,7 +262,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Remove_NoValuesRemainInKey_ShouldRemoveKey() {
+        public void MultiDictionaryExtensions_Remove_NoValuesRemainInKey_ShouldRemoveKey()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
             dict.Add(0, "Test 1");
@@ -254,7 +277,8 @@ namespace UtilTests {
         }
 
         [TestMethod]
-        public void MultiDictionaryExtensions_Remove_NoValuesRemainInKey_ShouldNotRemoveOtherKeys() {
+        public void MultiDictionaryExtensions_Remove_NoValuesRemainInKey_ShouldNotRemoveOtherKeys()
+        {
             var dict = new Dictionary<int, HashSet<string>>();
             dict.Add(0, "Test 0");
             dict.Add(1, "Test 1");
