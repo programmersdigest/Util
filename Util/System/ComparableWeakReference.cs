@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace programmersdigest.Util
+namespace programmersdigest.Util.System
 {
     /// <summary>
     /// An implementation of a weak reference type which holds a hash code of the target

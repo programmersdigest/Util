@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using programmersdigest.Util;
+using programmersdigest.Util.Reflection;
 using System;
 using System.Diagnostics;
 using System.Linq;
 
-namespace UtilTests
+namespace UtilTests.Reflection
 {
     [TestClass]
     public class PropertiesCacheTests

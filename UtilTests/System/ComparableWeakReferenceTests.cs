@@ -1,10 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using programmersdigest.Util;
+using programmersdigest.Util.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UtilTests
+namespace UtilTests.System
 {
     [TestClass]
     public class ComparableWeakReferenceTests

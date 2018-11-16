@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace programmersdigest.Util
+namespace programmersdigest.Util.Collections
 {
     /// <summary>
     /// Custom extensions to LINQ.

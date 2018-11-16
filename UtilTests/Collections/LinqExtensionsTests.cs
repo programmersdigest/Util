@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using programmersdigest.Util;
+using programmersdigest.Util.Collections;
 using System.Linq;
 using System;
 
-namespace UtilTests
+namespace UtilTests.Collections
 {
     [TestClass]
     public class LinqExtensionsTests

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace programmersdigest.Util
+namespace programmersdigest.Util.Collections
 {
     /// <summary>
     /// Extension methods to ease the use of dictionaries mapping a key to a collection of values.

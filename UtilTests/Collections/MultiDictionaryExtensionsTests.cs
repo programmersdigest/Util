@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using programmersdigest.Util;
+using programmersdigest.Util.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UtilTests
+namespace UtilTests.Collections
 {
     [TestClass]
     public class MultiDictionaryExtensionsTests

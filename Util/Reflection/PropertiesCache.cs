@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Reflection;
 
-namespace programmersdigest.Util
+namespace programmersdigest.Util.Reflection
 {
     /// <summary>
     /// Provides a cache for reflection based property access.
