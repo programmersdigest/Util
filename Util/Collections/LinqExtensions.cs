@@ -39,7 +39,7 @@ namespace programmersdigest.Util.Collections
         /// Assert.AreEqual(1, result[0]);
         /// Assert.AreEqual(3, result[1]);
         /// </example>
-        public static IEnumerable<U> Scan<T, U>(this IEnumerable<T> collection, Func<U, T, U> aggregateFunction, U state = default(U))
+        public static IEnumerable<U> Scan<T, U>(this IEnumerable<T> collection, Func<U, T, U> aggregateFunction, U state = default(U)!)
         {
             foreach (var item in collection)
             {
