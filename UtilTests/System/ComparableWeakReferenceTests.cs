@@ -35,26 +35,21 @@ namespace UtilTests.System
         [TestMethod]
         public void ComparableWeakReference_GetHashCode_TargetGetsGarbageCollected_HashCodeShouldNotChange()
         {
-#if DEBUG
-            Assert.Inconclusive("Please run test in configuration \"Release\". Otherwise Garbage Collection will not collect the reference target and the test will fail.");
-#endif
             ComparableWeakReference<object> reference;
             int targetHashCode;
 
+            void CreateReference()
             {
-                var target = new object();
+                var target = new object();      // Valid only inside this method.
                 targetHashCode = target.GetHashCode();
 
                 reference = new ComparableWeakReference<object>(target);
             }
+            CreateReference();
 
-            GC.Collect(GC.MaxGeneration);
-            GC.WaitForPendingFinalizers();
+            GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced, true);    // To make sure target gets collected.
 
-            {
-                Assert.IsFalse(reference.TryGetTarget(out var target));
-            }
-
+            Assert.IsFalse(reference.TryGetTarget(out var _));
             Assert.AreEqual(targetHashCode, reference.GetHashCode());
         }
 
