@@ -13,7 +13,7 @@ namespace programmersdigest.UtilTests.Threading
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_CallbackIsNull_ShouldThrowArgumentNullException()
         {
-            new QueueWorkerThread<string>(null);
+            new QueueWorkerThread<string>(null!);
         }
 
         [TestMethod]
@@ -129,7 +129,7 @@ namespace programmersdigest.UtilTests.Threading
         public void DoWork_OneEnqueuedItem_CallbackShouldReceiveTheEnqueuedItem()
         {
             var resetEvent = new AutoResetEvent(false);
-            string receivedItem = null;
+            string receivedItem = null!;
 
             Action<string> callback = (item) =>
             {

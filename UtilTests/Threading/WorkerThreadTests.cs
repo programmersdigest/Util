@@ -12,7 +12,7 @@ namespace programmersdigest.UtilTests.Threading
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_CallbackIsNull_ShouldThrowArgumentNullException()
         {
-            new WorkerThread(null);
+            new WorkerThread(null!);
         }
 
         [TestMethod]

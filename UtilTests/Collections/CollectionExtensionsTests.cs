@@ -14,7 +14,7 @@ namespace UtilTests.Collections
         [ExpectedException(typeof(ArgumentNullException))]
         public void CollectionExtensions_AddRange_CollectionIsNull_ShouldThrowArgumentNullException()
         {
-            ICollection<string> collection = null;
+            ICollection<string> collection = null!;
             var items = new string[] { "Test 1" };
 
             programmersdigest.Util.Collections.CollectionExtensions.AddRange(collection, items);
@@ -25,7 +25,7 @@ namespace UtilTests.Collections
         public void CollectionExtensions_AddRange_ItemsIsNull_ShouldThrowArgumentNullException()
         {
             var collection = new Collection<string>();
-            collection.AddRange(null);
+            collection.AddRange(null!);
         }
 
         [TestMethod]

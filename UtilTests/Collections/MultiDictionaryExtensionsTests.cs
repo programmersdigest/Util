@@ -15,7 +15,7 @@ namespace UtilTests.Collections
         [ExpectedException(typeof(ArgumentNullException))]
         public void MultiDictionaryExtensions_Add_DictionaryIsNull_ShouldThrowArgumentNullException()
         {
-            Dictionary<int, HashSet<string>> dict = null;
+            Dictionary<int, HashSet<string>> dict = null!;
 
             MultiDictionaryExtensions.Add(dict, 0, "Test 0");
         }
@@ -25,14 +25,14 @@ namespace UtilTests.Collections
         public void MultiDictionaryExtensions_Add_KeyIsNull_ShouldThrowArgumentNullException()
         {
             var dict = new Dictionary<object, HashSet<string>>();
-            dict.Add(null, "Test 0");
+            dict.Add(null!, "Test 0");
         }
 
         [TestMethod]
         public void MultiDictionaryExtensions_Add_ValueIsNull_ShouldAddValue()
         {
             var dict = new Dictionary<int, HashSet<string>>();
-            string value = null;
+            string value = null!;
             dict.Add(0, value);
 
             Assert.AreEqual(1, dict.Count);
@@ -201,7 +201,7 @@ namespace UtilTests.Collections
         [ExpectedException(typeof(ArgumentNullException))]
         public void MultiDictionaryExtensions_Remove_DictionaryIsNull_ShouldThrowArgumentNullException()
         {
-            Dictionary<int, HashSet<string>> dict = null;
+            Dictionary<int, HashSet<string>> dict = null!;
 
             MultiDictionaryExtensions.Remove(dict, 0, "Test 0");
         }
@@ -211,7 +211,7 @@ namespace UtilTests.Collections
         public void MultiDictionaryExtensions_Remove_KeyIsNull_ShouldThrowArgumentNullException()
         {
             var dict = new Dictionary<object, HashSet<string>>();
-            dict.Remove(null, "Test 0");
+            dict.Remove(null!, "Test 0");
         }
 
         [TestMethod]
@@ -238,7 +238,7 @@ namespace UtilTests.Collections
         public void MultiDictionaryExtensions_Remove_ValueIsNull_ShouldRemoveValue()
         {
             var dict = new Dictionary<int, HashSet<string>>();
-            string value = null;
+            string value = null!;
             dict.Add(0, value);
 
             dict.Remove(0, value);

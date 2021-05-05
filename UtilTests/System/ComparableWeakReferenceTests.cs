@@ -12,14 +12,14 @@ namespace UtilTests.System
         [TestMethod]
         public void ComparableWeakReference_Ctor_TargetIsNull_ShouldNotThrowException()
         {
-            var reference = new ComparableWeakReference<object>(null);
+            var reference = new ComparableWeakReference<object>(null!);
             Assert.IsNotNull(reference);
         }
 
         [TestMethod]
         public void ComparableWeakReference_GetHashCode_TargetIsNull_HashCodeShouldBeZero()
         {
-            var reference = new ComparableWeakReference<object>(null);
+            var reference = new ComparableWeakReference<object>(null!);
             Assert.AreEqual(0, reference.GetHashCode());
         }
 

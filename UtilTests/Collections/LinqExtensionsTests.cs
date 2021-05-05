@@ -13,7 +13,7 @@ namespace UtilTests.Collections
         [ExpectedException(typeof(NullReferenceException))]
         public void LinqExtensions_Scan_CollectionIsNull_ShouldThrowNullReferenceException()
         {
-            List<int> collection = null;
+            List<int> collection = null!;
             collection.Scan((state, item) => state + item, 0).ToList();
         }
 
@@ -22,7 +22,7 @@ namespace UtilTests.Collections
         public void LinqExtensions_Scan_AggregateFunctionIsNull_ShouldThrowNullReferenceException()
         {
             var collection = new[] { 1, 2, 3, 4, 5 };
-            collection.Scan(null, 0).ToList();
+            collection.Scan(null!, 0).ToList();
         }
 
         [TestMethod]
