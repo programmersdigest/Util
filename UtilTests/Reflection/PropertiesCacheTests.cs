@@ -94,7 +94,7 @@ namespace UtilTests.Reflection
         {
             var stopwatch1 = new Stopwatch();
             stopwatch1.Start();
-            for (var i = 0; i < 10000000; i++)
+            for (var i = 0; i < 1000000; i++)
             {
                 typeof(TestClass2).GetProperties();
             }
@@ -103,7 +103,7 @@ namespace UtilTests.Reflection
             var cache2 = new PropertiesCache();
             var stopwatch2 = new Stopwatch();
             stopwatch2.Start();
-            for (var i = 0; i < 10000000; i++)
+            for (var i = 0; i < 1000000; i++)
             {
                 cache2.GetPropertiesOf<TestClass2>();
             }
@@ -111,7 +111,7 @@ namespace UtilTests.Reflection
 
             Console.WriteLine(stopwatch1.Elapsed);
             Console.WriteLine(stopwatch2.Elapsed);
-            Assert.IsTrue(stopwatch1.Elapsed > stopwatch2.Elapsed);
+            Assert.IsTrue(stopwatch1.Elapsed > stopwatch2.Elapsed, $"Uncached: {stopwatch1.Elapsed} vs. cached: {stopwatch2.Elapsed}.");
         }
     }
 }
