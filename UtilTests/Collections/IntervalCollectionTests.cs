@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using programmersdigest.Util.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -188,13 +187,16 @@ namespace programmersdigest.UtilTests.Collections
 
             var result = collection.GetOverlapping(1, 3);
 
-            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(3, result.Count);
 
             Assert.AreEqual(0, result[0].Start);
             Assert.AreEqual(2, result[0].End);
 
             Assert.AreEqual(0, result[1].Start);
             Assert.AreEqual(4, result[1].End);
+
+            Assert.AreEqual(3, result[2].Start);
+            Assert.AreEqual(5, result[2].End);
         }
 
         [TestMethod]
@@ -206,13 +208,16 @@ namespace programmersdigest.UtilTests.Collections
 
             var result = collection.GetOverlapping(4, 7);
 
-            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(3, result.Count);
 
-            Assert.AreEqual(3, result[0].Start);
-            Assert.AreEqual(5, result[0].End);
+            Assert.AreEqual(0, result[0].Start);
+            Assert.AreEqual(4, result[0].End);
 
-            Assert.AreEqual(6, result[1].Start);
-            Assert.AreEqual(8, result[1].End);
+            Assert.AreEqual(3, result[1].Start);
+            Assert.AreEqual(5, result[1].End);
+
+            Assert.AreEqual(6, result[2].Start);
+            Assert.AreEqual(8, result[2].End);
         }
 
         [TestMethod]
@@ -224,16 +229,19 @@ namespace programmersdigest.UtilTests.Collections
 
             var result = collection.GetOverlapping(2, 6);
 
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(4, result.Count);
 
-            Assert.AreEqual(2, result[0].Start);
-            Assert.AreEqual(4, result[0].End);
+            Assert.AreEqual(1, result[0].Start);
+            Assert.AreEqual(2, result[0].End);
 
-            Assert.AreEqual(3, result[1].Start);
-            Assert.AreEqual(6, result[1].End);
+            Assert.AreEqual(2, result[1].Start);
+            Assert.AreEqual(4, result[1].End);
 
-            Assert.AreEqual(4, result[2].Start);
+            Assert.AreEqual(3, result[2].Start);
             Assert.AreEqual(6, result[2].End);
+
+            Assert.AreEqual(4, result[3].Start);
+            Assert.AreEqual(6, result[3].End);
         }
 
         [TestMethod]
@@ -266,7 +274,7 @@ namespace programmersdigest.UtilTests.Collections
 
                 var result = collection.GetOverlapping(start, end).ToList();
 
-                var expected = items.Where(i => i.Start < end && i.End > start).ToList();
+                var expected = items.Where(i => i.Start <= end && i.End >= start).ToList();
                 CollectionAssert.AreEquivalent(expected, result);
             }
         }

@@ -110,8 +110,10 @@ namespace programmersdigest.Util.Collections
 
         public IntervalCollection<T> GetEnclosing(T start, T end)
         {
-            var overlapping = GetOverlapping(start, end);
-            return IntervalCollection<T>.FromOrdered(overlapping.Where(i => i.Start.CompareTo(start) <= 0 && i.End.CompareTo(end) >= 0));
+            var index = BinarySearch(_intervals, SearchEnclosingComparator, start, end);
+            return index < 0
+                 ? new IntervalCollection<T>()
+                 : GetLeftAndRight(index, SearchEnclosingComparator, start, end);
         }
 
         public IEnumerator<IInterval<T>> GetEnumerator()
@@ -172,7 +174,21 @@ namespace programmersdigest.Util.Collections
             var startComparison = interval.Start.CompareTo(end);
             var endComparison = interval.End.CompareTo(start);
 
-            if (startComparison < 0 && endComparison > 0)
+            if (startComparison <= 0 && endComparison >= 0)
+                return 0;
+            else if (endComparison < 0)
+                return 1;
+            else
+                return -1;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static int SearchEnclosingComparator(IInterval<T> interval, T start, T end)
+        {
+            var startComparison = interval.Start.CompareTo(start);
+            var endComparison = interval.End.CompareTo(end);
+
+            if (startComparison <= 0 && endComparison >= 0)
                 return 0;
             else if (endComparison <= 0)
                 return 1;
